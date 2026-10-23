@@ -46,20 +46,3 @@ Every project has its own README with features, API list and run steps. The shor
 2. **UI shows "Server not reachable" / empty list** → the backend terminal is not running; start it first.
 3. **Port already in use** → close the old terminal running that project, or change `PORT` in `.env`.
 4. **Angular asks about analytics** → it is turned off in `angular.json`; if asked, type `N`.
-
-## Upload to GitHub
-
-1. Sign in at https://github.com → **New repository** → name it `U21CSP12-Assignment2-24CS192` → Public → **Create repository** (do NOT add a README).
-2. Install Git from https://git-scm.com if `git --version` does not work.
-3. Open a terminal **inside this `Sathya_R_V_JS_2` folder** and run:
-
-```bash
-git init
-git add .
-git commit -m "U21CSP12 Assignment II - Sathya R V (24CS192)"
-git branch -M main
-git remote add origin https://github.com/<your-username>/U21CSP12-Assignment2-24CS192.git
-git push -u origin main
-```
-
-4. `node_modules` is excluded by `.gitignore`, so the upload is small. Submit the repository link.
