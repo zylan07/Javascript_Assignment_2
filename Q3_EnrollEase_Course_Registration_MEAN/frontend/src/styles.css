@@ -1,0 +1,10 @@
+:root {
+  --indigo: #4338ca;
+  --indigo-soft: #eef0ff;
+  --coral: #f43f5e;
+  --ink: #1e1b4b;
+  --muted: #64748b;
+  --line: #e2e8f0;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: var(--ink); }

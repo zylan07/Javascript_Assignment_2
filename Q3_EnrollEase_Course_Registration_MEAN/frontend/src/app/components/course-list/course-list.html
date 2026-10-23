@@ -1,0 +1,37 @@
+<div class="toolbar">
+  <input placeholder="Search code, title or faculty…" [value]="search()" (input)="search.set($any($event.target).value)" />
+  <div class="cats">
+    @for (cat of categories; track cat) {
+      <button [class.on]="category() === cat" (click)="category.set(cat)">{{ cat }}</button>
+    }
+  </div>
+</div>
+
+<div class="courses">
+  @for (c of visible(); track c._id) {
+    <article class="course" [class.picked]="isSelected(c)" [class.full]="c.seatsLeft <= 0">
+      <header>
+        <span class="code">{{ c.code }}</span>
+        <span class="tag">{{ c.category }}</span>
+      </header>
+      <h3>{{ c.title }}</h3>
+      <p class="fac">{{ c.instructor }}</p>
+      <p class="sched">🕘 {{ c.schedule || 'TBA' }} · {{ c.credits }} credits</p>
+
+      <div class="bar"><span [style.width.%]="fill(c)"></span></div>
+      <p class="seats">
+        @if (c.seatsLeft > 0) {
+          <b>{{ c.seatsLeft }}</b> of {{ c.capacity }} seats left
+        } @else {
+          <b class="red">Course full</b>
+        }
+      </p>
+
+      <button class="pick" [disabled]="c.seatsLeft <= 0 && !isSelected(c)" (click)="svc.toggle(c)">
+        {{ isSelected(c) ? '✓ Selected' : 'Select course' }}
+      </button>
+    </article>
+  } @empty {
+    <p class="none">No courses match your filter.</p>
+  }
+</div>

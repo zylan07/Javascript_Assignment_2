@@ -1,0 +1,36 @@
+<div class="wrap">
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <h2>Add a Course</h2>
+    <label>Course Code <input formControlName="code" placeholder="U21CS505" />
+      @if (form.controls.code.invalid && form.controls.code.touched) { <small>6–10 letters/digits</small> }
+    </label>
+    <label>Title <input formControlName="title" />
+      @if (form.controls.title.invalid && form.controls.title.touched) { <small>Min 4 characters</small> }
+    </label>
+    <label>Instructor <input formControlName="instructor" />
+      @if (form.controls.instructor.invalid && form.controls.instructor.touched) { <small>Required</small> }
+    </label>
+    <div class="three">
+      <label>Credits <input type="number" formControlName="credits" /></label>
+      <label>Capacity <input type="number" formControlName="capacity" /></label>
+      <label>Category
+        <select formControlName="category">
+          <option>Core</option><option>Professional Elective</option><option>Open Elective</option><option>Lab</option>
+        </select>
+      </label>
+    </div>
+    <label>Schedule <input formControlName="schedule" placeholder="Mon, Wed · 10:00" /></label>
+    @if (msg(); as m) { <p class="m" [class.no]="!m.ok">{{ m.text }}</p> }
+    <button>Add course</button>
+  </form>
+
+  <div class="list">
+    <h2>Course Catalogue</h2>
+    @for (c of svc.courses(); track c._id) {
+      <div class="row">
+        <span><b>{{ c.code }}</b> {{ c.title }}</span>
+        <span>{{ c.enrolled }}/{{ c.capacity }} <button (click)="remove(c._id, c.code)">Delete</button></span>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,21 @@
+form { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px; position: sticky; top: 16px; }
+h2 { margin: 0 0 14px; font-size: 18px; color: var(--indigo); }
+label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
+input, select { padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; font-weight: 400; color: var(--ink); }
+input.ng-invalid.ng-touched { border-color: #dc2626; background: #fff7f7; }
+input.ng-valid.ng-touched { border-color: #16a34a; }
+.err { color: #b91c1c; }
+small { color: #dc2626; font-weight: 400; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.selected { background: var(--indigo-soft); border-radius: 10px; padding: 12px; margin: 6px 0 12px; }
+.selected h3 { margin: 0 0 8px; font-size: 14px; }
+.sel { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px dashed #c7d2fe; gap: 6px; }
+.sel button { border: 0; background: none; cursor: pointer; color: #b91c1c; }
+.hint { font-size: 12px; color: var(--muted); margin: 0; }
+.total { margin: 8px 0 0; font-size: 13px; }
+.agree { flex-direction: row; align-items: center; gap: 8px; font-weight: 400; }
+.alert { background: #ecfdf5; color: #065f46; border-radius: 8px; padding: 10px; font-size: 13px; margin-bottom: 10px; }
+.alert.bad { background: #fef2f2; color: #991b1b; }
+.alert ul { margin: 6px 0 0; padding-left: 18px; }
+.submit { width: 100%; padding: 12px; border: 0; border-radius: 10px; background: linear-gradient(90deg, var(--indigo), var(--coral)); color: #fff; font-weight: 700; font-size: 15px; cursor: pointer; }
+.submit:disabled { opacity: .6; }

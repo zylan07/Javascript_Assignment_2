@@ -1,0 +1,74 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <h2>Student Details</h2>
+
+  <label [class.err]="bad('rollNo')">
+    Roll Number
+    <input formControlName="rollNo" placeholder="24CS192" />
+    @if (bad('rollNo')) { <small>Enter a valid roll no (e.g. 24CS192)</small> }
+  </label>
+
+  <label [class.err]="bad('name')">
+    Full Name
+    <input formControlName="name" placeholder="Sathya R V" />
+    @if (form.controls.name.hasError('required') && bad('name')) { <small>Name is required</small> }
+    @else if (form.controls.name.hasError('minlength')) { <small>Minimum 3 characters</small> }
+    @else if (form.controls.name.hasError('pattern')) { <small>Only letters, spaces and dots</small> }
+  </label>
+
+  <label [class.err]="bad('email')">
+    College Email
+    <input formControlName="email" type="email" placeholder="name@kpriet.ac.in" />
+    @if (bad('email')) { <small>Enter a valid email address</small> }
+  </label>
+
+  <div class="two">
+    <label>
+      Department
+      <select formControlName="department">
+        @for (d of departments; track d) { <option [value]="d">{{ d }}</option> }
+      </select>
+    </label>
+    <label [class.err]="bad('year')">
+      Year
+      <select formControlName="year">
+        <option [ngValue]="1">I</option>
+        <option [ngValue]="2">II</option>
+        <option [ngValue]="3">III</option>
+        <option [ngValue]="4">IV</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="selected">
+    <h3>Selected courses ({{ courses.selectedCourses().length }})</h3>
+    @for (c of courses.selectedCourses(); track c._id) {
+      <div class="sel">
+        <span><b>{{ c.code }}</b> {{ c.title }}</span>
+        <span>{{ c.credits }} cr <button type="button" (click)="courses.toggle(c)">✕</button></span>
+      </div>
+    } @empty {
+      <p class="hint">Pick courses from the list on the left.</p>
+    }
+    <p class="total">Total credits: <b>{{ courses.selectedCredits() }}</b> / 24</p>
+  </div>
+
+  <label class="agree" [class.err]="bad('agree')">
+    <input type="checkbox" formControlName="agree" /> I confirm the details are correct
+  </label>
+
+  @if (error()) { <p class="alert bad">{{ error() }}</p> }
+  @if (result(); as r) {
+    <div class="alert" [class.bad]="!r.totalCredits">
+      <b>{{ r.message }}</b>
+      <ul>
+        @for (x of r.results; track $index) {
+          <li>{{ x.ok ? '✔' : '✖' }} {{ x.code }} {{ x.reason ? '— ' + x.reason : '' }}</li>
+        }
+      </ul>
+    </div>
+  }
+
+  <button class="submit" type="submit" [disabled]="submitting()">
+    {{ submitting() ? 'Registering…' : 'Register Courses' }}
+  </button>
+</form>

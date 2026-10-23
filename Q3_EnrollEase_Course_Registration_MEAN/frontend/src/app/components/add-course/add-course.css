@@ -1,0 +1,13 @@
+.wrap { display: grid; grid-template-columns: 380px 1fr; gap: 20px; align-items: start; }
+form, .list { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+h2 { margin: 0 0 14px; font-size: 18px; color: var(--indigo); }
+label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
+input, select { padding: 9px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+input.ng-invalid.ng-touched { border-color: #dc2626; }
+small { color: #dc2626; font-weight: 400; }
+.three { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 8px; }
+form > button { width: 100%; padding: 11px; border: 0; border-radius: 10px; background: var(--indigo); color: #fff; font-weight: 700; cursor: pointer; }
+.m { background: #ecfdf5; color: #065f46; padding: 8px; border-radius: 8px; font-size: 13px; }
+.m.no { background: #fef2f2; color: #991b1b; }
+.row { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; gap: 8px; }
+.row button { margin-left: 8px; border: 1px solid #fecaca; background: #fef2f2; color: #b91c1c; border-radius: 6px; padding: 3px 8px; cursor: pointer; font-size: 12px; }

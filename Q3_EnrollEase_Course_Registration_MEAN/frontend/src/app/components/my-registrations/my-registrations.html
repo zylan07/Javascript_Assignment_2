@@ -1,0 +1,41 @@
+<div class="lookup">
+  <input [formControl]="roll" placeholder="Enter your roll number (e.g. 24CS192)" (keyup.enter)="find()" />
+  <button (click)="find()">View registrations</button>
+</div>
+@if (roll.invalid && roll.touched) { <p class="warn">Enter a valid roll number like 24CS192</p> }
+@if (msg()) { <p class="msg">{{ msg() }}</p> }
+
+@if (student(); as s) {
+  <div class="profile">
+    <div class="avatar">{{ s.name.charAt(0) }}</div>
+    <div>
+      <h3>{{ s.name }}</h3>
+      <p>{{ s.rollNo }} · {{ s.department }} · Year {{ s.year }} · {{ s.email }}</p>
+    </div>
+    <div class="cr"><b>{{ credits() }}</b><span>active credits</span></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Code</th><th>Course</th><th>Credits</th><th>Registered on</th><th>Status</th><th></th></tr>
+    </thead>
+    <tbody>
+      @for (r of list(); track r._id) {
+        <tr [class.off]="r.status === 'Cancelled'">
+          <td class="code">{{ r.course.code }}</td>
+          <td>{{ r.course.title }}<br /><small>{{ r.course.instructor }}</small></td>
+          <td>{{ r.course.credits }}</td>
+          <td>{{ r.createdAt | date: 'dd MMM yyyy, h:mm a' }}</td>
+          <td><span class="st" [class.c]="r.status === 'Cancelled'">{{ r.status }}</span></td>
+          <td>
+            @if (r.status === 'Registered') {
+              <button class="cancel" (click)="cancel(r)">Cancel</button>
+            }
+          </td>
+        </tr>
+      } @empty {
+        <tr><td colspan="6">No registrations yet.</td></tr>
+      }
+    </tbody>
+  </table>
+}
